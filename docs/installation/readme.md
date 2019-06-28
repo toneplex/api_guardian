@@ -134,14 +134,13 @@ debt, code duplication, and helps organize your business logic.
 
 ## Serializers
 
-ApiGuardian is using [active_model_serializers](https://github.com/rails-api/active_model_serializers)
-as the method of returning data to the client. It is set up to use the [JSON API](http://jsonapi.org/)
-adapter. Setting up a serializer is very simple using AMS, and you can check out
-that project for more information. It's worth mentioning here, because you will
-likely want to get in the habit of creating at least one serializer per resource.
-ApiGuardian really doesn't care about output format, but it does care about input,
-and so using serializers will help keep those in parity which make your clients
-easier to write.
+ApiGuardian is using [fast_jsonapi](https://github.com/Netflix/fast_jsonapi)
+as the method of returning data to the client. 
+
+In order for ApiGuardian to serialize your data, you must add
+a serializer. The serializer should be named with the name of your model, and
+'Serializer' (e.g. a model named "Foo" will have a "FooSerializer".). Your serializers must extend
+`ApiGuardian::Serializers::Base`.
 
 ---
 

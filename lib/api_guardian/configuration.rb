@@ -78,7 +78,9 @@ module ApiGuardian
     end
 
     def otp_header_name=(value)
-      fail ConfigurationError.new('otp_header_name must be a valid string!') unless value.is_a?(String) && value.present?
+      unless value.is_a?(String) && value.present?
+        fail ConfigurationError.new('otp_header_name must be a valid string!')
+      end
       @otp_header_name = value
     end
 
@@ -174,12 +176,22 @@ module ApiGuardian
       regenerate_doorkeeper_config
     end
 
+    def json_api_key_transform
+      @json_api_key_transform ||= :dash
+    end
+
+    def json_api_key_transform=(value)
+      @json_api_key_transform = value
+    end
+
     def client_password_reset_url
       @client_password_reset_url ||= 'https://change-me-in-the-apiguardian-initializer.com'
     end
 
     def client_password_reset_url=(value)
-      fail ConfigurationError.new("#{value} is not a valid URL for client_password_reset_url!") unless value =~ URI.regexp
+      unless value =~ URI.regexp
+        fail ConfigurationError.new("#{value} is not a valid URL for client_password_reset_url!")
+      end
       @client_password_reset_url = value
 
       regenerate_doorkeeper_config
@@ -188,7 +200,8 @@ module ApiGuardian
     def on_reset_password
       @on_reset_password ||= lambda do |_user, _reset_url|
         ApiGuardian.logger.warn(
-          'You need to customize ApiGuardian::Configuration#on_reset_password lambda to handle the password reset communication.'
+          'You need to customize ApiGuardian::Configuration#on_reset_password lambda ' +
+          'to handle the password reset communication.'
         )
       end
     end
@@ -201,7 +214,8 @@ module ApiGuardian
     def on_reset_password_complete
       @on_reset_password_complete ||= lambda do |_user|
         ApiGuardian.logger.warn(
-          'You need to customize ApiGuardian::Configuration#on_reset_password_complete lambda to handle the post password reset communication.'
+          'You need to customize ApiGuardian::Configuration#on_reset_password_complete lambda ' +
+          'to handle the post password reset communication.'
         )
       end
     end
@@ -214,7 +228,8 @@ module ApiGuardian
     def on_password_changed
       @on_password_changed ||= lambda do |_user|
         ApiGuardian.logger.warn(
-          'You need to customize ApiGuardian::Configuration#on_password_changed lambda to handle the post password change communication.'
+          'You need to customize ApiGuardian::Configuration#on_password_changed lambda ' +
+          'to handle the post password change communication.'
         )
       end
     end
@@ -245,7 +260,8 @@ module ApiGuardian
     def on_send_otp_via_sms
       @on_send_otp_via_sms ||= lambda do |_user|
         ApiGuardian.logger.warn(
-          'You need to customize ApiGuardian::Configuration#on_send_otp_via_sms lambda to handle sending OTP via SMS.'
+          'You need to customize ApiGuardian::Configuration#on_send_otp_via_sms lambda ' +
+          'to handle sending OTP via SMS.'
         )
       end
     end
@@ -258,7 +274,8 @@ module ApiGuardian
     def on_send_otp_via_voice
       @on_send_otp_via_voice ||= lambda do |_user|
         ApiGuardian.logger.warn(
-          'You need to customize ApiGuardian::Configuration#on_send_otp_via_voice lambda to handle sending OTP via voice.'
+          'You need to customize ApiGuardian::Configuration#on_send_otp_via_voice lambda ' +
+          'to handle sending OTP via voice.'
         )
       end
     end
@@ -271,7 +288,8 @@ module ApiGuardian
     def on_send_otp_via_email
       @on_send_otp_via_email ||= lambda do |_user|
         ApiGuardian.logger.warn(
-          'You need to customize ApiGuardian::Configuration#on_send_otp_via_email lambda to handle sending OTP via email.'
+          'You need to customize ApiGuardian::Configuration#on_send_otp_via_email lambda ' +
+          'to handle sending OTP via email.'
         )
       end
     end
@@ -284,7 +302,8 @@ module ApiGuardian
     def on_phone_verified
       @on_phone_verified ||= lambda do |_user|
         ApiGuardian.logger.warn(
-          'You need to customize ApiGuardian::Configuration#on_phone_verified lambda to handle feedback after verifying phone.'
+          'You need to customize ApiGuardian::Configuration#on_phone_verified lambda ' +
+          'to handle feedback after verifying phone.'
         )
       end
     end

@@ -7,7 +7,7 @@ require 'kaminari'
 require 'zxcvbn'
 require 'phony'
 require 'active_model_otp'
-require 'active_model_serializers'
+require 'fast_jsonapi'
 require 'api_guardian/version'
 require 'api_guardian/logs'
 require 'api_guardian/helpers/helpers'
@@ -48,6 +48,10 @@ module ApiGuardian
     autoload :PermissionStore, 'api_guardian/stores/permission_store'
   end
 
+  module Serializers
+    autoload :Base, 'api_guardian/serializers/base'
+  end
+
   module Policies
     autoload :ApplicationPolicy, 'api_guardian/policies/application_policy'
     autoload :PermissionPolicy, 'api_guardian/policies/permission_policy'
@@ -62,8 +66,6 @@ module ApiGuardian
 
   module Strategies
     module Authentication
-      module_function
-
       def self.find_strategy(provider)
         strategy = Base.providers[provider.to_sym]
         fail(
@@ -80,8 +82,6 @@ module ApiGuardian
     end
 
     module Registration
-      module_function
-
       def self.find_strategy(provider)
         strategy = Base.providers[provider.to_sym]
         fail(
@@ -126,15 +126,11 @@ module ApiGuardian
     @logger ||= ApiGuardian::Logging::Logger.new(STDOUT)
   end
 
-  module_function
-
   def class_exists?(class_name)
     class_name.constantize.is_a?(Class)
   rescue
     false
   end
-
-  module_function
 
   def find_user_store
     store = nil

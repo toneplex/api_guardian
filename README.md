@@ -3,8 +3,8 @@
 Drop in authorization and authentication suite for Rails APIs.
 
 [![Build Status](	https://img.shields.io/travis/lookitsatravis/api_guardian.svg?style=flat-square)](https://travis-ci.org/lookitsatravis/api_guardian)
-[![Test Coverage](https://img.shields.io/codeclimate/coverage/github/lookitsatravis/api_guardian.svg?style=flat-square)](https://codeclimate.com/github/lookitsatravis/api_guardian/coverage)
-[![Code Climate](https://img.shields.io/codeclimate/github/lookitsatravis/api_guardian.svg?style=flat-square)](https://codeclimate.com/github/lookitsatravis/api_guardian)
+[![Test Coverage](https://img.shields.io/codeclimate/coverage/lookitsatravis/api_guardian.svg?style=flat-square)](https://codeclimate.com/github/lookitsatravis/api_guardian/coverage)
+[![Code Climate](https://img.shields.io/codeclimate/maintainability/lookitsatravis/api_guardian.svg?style=flat-square)](https://codeclimate.com/github/lookitsatravis/api_guardian)
 
 ## **\*\*This gem is in alpha stages and is not feature complete. It should not be used in production!\*\***
 
@@ -18,7 +18,7 @@ ApiGuardian includes the following features out of the box:
 * Permissions
 * Stateless authentication using OAuth2 (via [Doorkeeper](https://github.com/doorkeeper-gem/doorkeeper) and [Doorkeeper::JWT](https://github.com/chriswarren/doorkeeper-jwt))
 * Policy enforcement (via [Pundit](https://github.com/elabs/pundit))
-* Serialization to [JSON API](http://jsonapi.org/) (via [AMS](https://github.com/rails-api/active_model_serializers))
+* Serialization to [JSON API](http://jsonapi.org/) (via [fast_jsonapi](https://github.com/Netflix/fast_jsonapi))
 * Two-factor auth
 * External Login (TODO)
 

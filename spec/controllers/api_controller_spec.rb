@@ -6,6 +6,9 @@ end
 class ApiGuardian::Stores::FooStore < ApiGuardian::Stores::Base
 end
 
+class FooSerializer < ApiGuardian::Serializers::Base
+end
+
 class Foo < ActiveRecord::Base
 end
 
@@ -15,6 +18,9 @@ module Test
 end
 
 class BarStore < ApiGuardian::Stores::Base
+end
+
+class BarSerializer < ApiGuardian::Serializers::Base
 end
 
 class Bar < ActiveRecord::Base
@@ -62,6 +68,19 @@ RSpec.describe ApiGuardian::ApiController do
           ApiGuardian::Errors::ResourceStoreMissing, 'Could not find a resource store ' \
           'for Baz. Have you created one? You can override `#resource_store` ' \
           'in your controller in order to set it up specifically.'
+        )
+      end
+    end
+
+    describe '#resource_serializer' do
+      it 'is able to find a serializer for a resource' do
+        result1 = dummy_class.resource_serializer
+
+        expect(result1).to be_a Class
+
+        expect { dummy3_class.resource_serializer }.to raise_error(
+          ApiGuardian::Errors::ResourceSerializerMissing, 'Could not find a resource serializer ' \
+          "for Baz. Have you created BazSerializer?"
         )
       end
     end
