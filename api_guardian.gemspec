@@ -20,7 +20,7 @@ Gem::Specification.new do |s|
   s.required_ruby_version = '>= 2.2.2'
 
   s.add_dependency 'rails', '>= 5.0', '< 6.0'
-  s.add_dependency 'active_model_otp', '~> 1.2'
+  s.add_dependency 'active_model_otp', '~> 2.0'
   s.add_dependency 'bcrypt', '~> 3.1'
   s.add_dependency 'doorkeeper-grants_assertion', '~> 0.0.1'
   s.add_dependency 'doorkeeper-jwt', '~> 0.1'
