@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'paranoia', '~> 2.3'
   s.add_dependency 'pg', '~> 1.1.4'
   s.add_dependency 'phony', '~> 2.15'
-  s.add_dependency 'pundit', '~> 1.1'
+  s.add_dependency 'pundit', '~> 2.0.1'
   s.add_dependency 'rack-cors', '~> 0.4'
   s.add_dependency 'zxcvbn-js', '~> 4.2'
   s.add_development_dependency 'database_cleaner', '~> 1.7'
