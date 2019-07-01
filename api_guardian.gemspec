@@ -40,7 +40,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'fuubar', '~> 2.4'
   s.add_development_dependency 'generator_spec', '~> 0.9'
   s.add_development_dependency 'rspec-activemodel-mocks', '~> 1.1'
-  s.add_development_dependency 'rspec-rails', '~> 3.8'
+  s.add_development_dependency 'rspec-rails', '~> 3.8.2'
   s.add_development_dependency 'rubocop', '~> 0.67'
   s.add_development_dependency 'rubocop-performance', '~> 1.1'
   s.add_development_dependency 'shoulda-matchers', '~> 4.0'
