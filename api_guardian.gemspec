@@ -28,7 +28,6 @@ Gem::Specification.new do |s|
   s.add_dependency 'fast_jsonapi', '~> 1.5'
   s.add_dependency 'kaminari', '~> 1.1.1'
   s.add_dependency 'koala', '~> 3.0'
-  s.add_dependency 'paranoia', '~> 2.3'
   s.add_dependency 'pg', '~> 1.1.4'
   s.add_dependency 'phony', '~> 2.15'
   s.add_dependency 'pundit', '~> 2.0.1'
