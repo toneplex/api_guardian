@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'active_model_otp', '~> 2.0'
   s.add_dependency 'bcrypt', '~> 3.1'
   s.add_dependency 'doorkeeper-grants_assertion', '~> 0.0.1'
-  s.add_dependency 'doorkeeper-jwt', '~> 0.1'
+  s.add_dependency 'doorkeeper-jwt', '>= 0.1', '< 0.4'
   s.add_dependency 'doorkeeper', '~> 4.2'
   s.add_dependency 'fast_jsonapi', '~> 1.5'
   s.add_dependency 'kaminari', '~> 1.1.1'
