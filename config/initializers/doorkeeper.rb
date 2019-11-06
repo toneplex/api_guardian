@@ -143,8 +143,7 @@ Doorkeeper::JWT.configure do
       sub: user.id,
       user: {
         id: user.id
-      },
-      permissions: user.role.permissions
+      }
     }
   end
 
