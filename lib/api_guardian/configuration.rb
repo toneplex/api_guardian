@@ -13,12 +13,12 @@ module ApiGuardian
 
     AVAILABLE_2FA_METHODS = %w(sms voice google_auth email).freeze
 
-    attr_reader :validate_password_score, :enable_2fa, :reuse_access_token, :allow_guest_authentication
+    attr_reader :validate_password, :enable_2fa, :reuse_access_token, :allow_guest_authentication
     attr_writer :user_class, :role_class, :permission_class, :role_permission_class,
                 :identity_class, :minimum_password_length, :jwt_secret, :jwt_secret_key_path
 
     def initialize
-      @validate_password_score = true
+      @validate_password = true
       @enable_2fa = false
       @reuse_access_token = true
       @allow_guest_authentication = false
@@ -53,23 +53,20 @@ module ApiGuardian
       @minimum_password_length ||= 8
     end
 
-    def validate_password_score=(value)
-      fail ConfigurationError.new('validate_password_score must be a boolean!') unless [true, false].include? value
-      @validate_password_score = value
+    def validate_password=(value)
+      fail ConfigurationError.new('validate_password must be a boolean!') unless [true, false].include? value
+      @validate_password = value
     end
 
-    def minimum_password_score
-      @minimum_password_score ||= 4
+    def password_regex
+      @password_regex ||= regex = /\A(?=.{8,})/x
     end
 
-    def minimum_password_score=(score)
-      if (0..4).cover?(score)
-        if score < 3
-          ApiGuardian.logger.warn 'A password score of less than 3 is not recommended.'
-        end
-        @minimum_password_score = score
+    def password_regex=(regex)
+      if regex.instance_of? Regexp
+        @password_regex = regex
       else
-        fail ConfigurationError.new('The minimum_password_score must be an integer and between 0..4')
+        fail ConfigurationError.new('The password_regex is not a valid regular expression')
       end
     end
 

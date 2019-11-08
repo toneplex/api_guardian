@@ -124,9 +124,9 @@ add it to `api_guardian_users` and not simply `users`.
 
 ## minimum_password_length
 
-## validate_password_score
+## validate_password
 
-## minimum_password_score
+## password_regex
 
 ## mail_from_address
 

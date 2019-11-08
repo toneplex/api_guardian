@@ -25,11 +25,11 @@ admin_role.create_default_permissions true
 user_role.create_default_permissions false
 
 # User
-old_score = ApiGuardian.configuration.minimum_password_score
-ApiGuardian.configuration.minimum_password_score = 0
+old_score = ApiGuardian.configuration.password_regex
+ApiGuardian.configuration.password_regex = /\A(?=.{8,})/x
 ApiGuardian.configuration.user_class.create!(
   first_name: 'Test', last_name: 'User', email: 'test@example.com',
   password: 'password', password_confirmation: 'password', role: admin_role,
   active: true, email_confirmed_at: DateTime.now.utc
 )
-ApiGuardian.configuration.minimum_password_score = old_score
+ApiGuardian.configuration.password_regex = old_score

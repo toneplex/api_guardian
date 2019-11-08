@@ -8,7 +8,7 @@ ApiGuardian.configure do |config|
   # it is recommended that it not be any lower.
   # config.minimum_password_length = 8
 
-  # config.minimum_password_score = 4
+  # config.password_regex = /\A(?=.{8,})/x
 
   # Enable two-factor authentication
   # config.enable_2fa = true

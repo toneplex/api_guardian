@@ -3,7 +3,6 @@ require 'action_mailer'
 require 'pundit'
 require 'rack/cors'
 require 'kaminari'
-require 'zxcvbn'
 require 'phony'
 require 'active_model_otp'
 require 'fast_jsonapi'
@@ -100,10 +99,6 @@ module ApiGuardian
   class << self
     attr_accessor :current_request, :current_user
     attr_writer :configuration
-
-    def zxcvbn_tester
-      @zxcvbn_tester ||= ::Zxcvbn::Tester.new
-    end
 
     def root
       spec = Gem::Specification.find_all_by_name('api_guardian').first

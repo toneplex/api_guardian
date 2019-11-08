@@ -135,13 +135,6 @@ RSpec.configure do |config|
     allow(logger).to receive(:fatal)
     allow(ApiGuardian).to receive(:logger).and_return(logger)
   end
-
-  # Disable Zxcvbn to improve performance
-  config.before(:each) do
-    allow_any_instance_of(Zxcvbn::Tester).to(
-      receive(:test).and_return(OpenStruct.new({ score: 4 }))
-    )
-  end
 end
 
 Shoulda::Matchers.configure do |config|
