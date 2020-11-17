@@ -25,7 +25,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'doorkeeper-grants_assertion', '~> 0.0.1'
   s.add_dependency 'doorkeeper-jwt', '>= 0.1', '< 0.4'
   s.add_dependency 'doorkeeper', '~> 4.2'
-  s.add_dependency 'fast_jsonapi', '~> 1.5'
+  s.add_dependency 'jsonapi-serializer', '~> 2.1'
   s.add_dependency 'kaminari', '~> 1.1.1'
   s.add_dependency 'koala', '~> 3.0'
   s.add_dependency 'pg', '~> 1.1.4'
