@@ -120,11 +120,6 @@ module ApiGuardian
         user = instance.find_by_reset_password_token(attributes[:token])
 
         if user
-          # Validate submitted email matches token
-          attributes[:email] = attributes[:email].downcase if attributes[:email].present?
-          fail ApiGuardian::Errors::ResetTokenUserMismatch,
-               attributes[:email] unless user.email == attributes[:email]
-
           # Check that it hasn't expired
           fail ApiGuardian::Errors::ResetTokenExpired, '' unless user.reset_password_token_valid?
 

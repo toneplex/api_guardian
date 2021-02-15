@@ -187,16 +187,6 @@ describe ApiGuardian::Stores::UserStore do
         expect(ApiGuardian::Stores::UserStore.complete_reset_password({})).to be false
       end
 
-      it 'fails if token doesn\'t match user email' do
-        user = mock_model(ApiGuardian::User)
-        expect(user).to receive(:email).and_return('bar')
-        allow_any_instance_of(ApiGuardian::Stores::UserStore).to receive(:find_by_reset_password_token).and_return(user)
-
-        expect { ApiGuardian::Stores::UserStore.complete_reset_password(email: 'foo') }.to(
-          raise_error ApiGuardian::Errors::ResetTokenUserMismatch
-        )
-      end
-
       it 'fails if token is expired' do
         user = mock_model(ApiGuardian::User)
         expect(user).to receive(:email).and_return('bar')
@@ -226,7 +216,6 @@ describe ApiGuardian::Stores::UserStore do
         user = mock_model(ApiGuardian::User)
         my_lambda = lambda { |_user| }
         allow_any_instance_of(ApiGuardian::Stores::UserStore).to receive(:find_by_reset_password_token).and_return(user)
-        expect(user).to receive(:email).and_return('foo')
         expect(user).to receive(:reset_password_token_valid?).and_return(true)
         expect_any_instance_of(ActionController::Parameters).to(
           receive(:fetch).with(:password, nil).and_return('password')
@@ -240,7 +229,6 @@ describe ApiGuardian::Stores::UserStore do
         expect(user).to receive(:save)
 
         attributes = ActionController::Parameters.new(
-          email: 'foo',
           password: 'password',
           password_confirmation: 'password'
         )
